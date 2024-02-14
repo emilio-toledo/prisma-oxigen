@@ -1,6 +1,6 @@
-mod models;
+mod modules;
 
-use models::Generator;
+use modules::Generator;
 
 fn main() {
     Generator::new(None, None);
