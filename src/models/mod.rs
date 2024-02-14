@@ -3,10 +3,12 @@ mod handler;
 
 pub mod prisma {
     mod manifest;
-    mod rpc;
+    mod request;
+    mod response;
 
     pub use manifest::*;
-    pub use rpc::*;
+    pub use request::*;
+    pub use response::*;
 }
 
 pub use generator::*;
