@@ -1,7 +1,4 @@
-use super::{
-    handler::{GenerateCallback, ManifestCallback},
-    Handler,
-};
+use super::{GenerateCallback, Handler, ManifestCallback};
 
 pub struct Generator {}
 impl Generator {
