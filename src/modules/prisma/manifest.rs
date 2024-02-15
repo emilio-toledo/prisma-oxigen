@@ -8,6 +8,7 @@ pub struct Manifest {
     pub deny_list: Option<DenyList>,
     pub requires_generators: Option<Vec<String>>,
     pub required_engines: Option<Vec<Engine>>,
+    pub requires_engines_version: Option<String>,
     pub version: String,
 }
 
@@ -18,25 +19,21 @@ impl Default for Manifest {
             default_output: "./gen".to_string(),
             version: env!("CARGO_PKG_VERSION").to_string(),
             deny_list: None,
-            requires_generators: Some(vec![]),
-            required_engines: Some(vec![
-                Engine::QueryEngine,
-                Engine::LibQueryEngineNapi,
-                Engine::MigrationEngine,
-                Engine::IntrospectionEngine,
-                Engine::PrismaFmt,
-            ]),
+            requires_generators: None,
+            requires_engines_version: None,
+            required_engines: None,
         }
     }
 }
 
 #[derive(Serialize, Debug)]
 pub struct DenyList {
-    models: Vec<String>,
-    fields: Vec<String>,
+    models: Option<Vec<String>>,
+    fields: Option<Vec<String>>,
 }
 
 #[derive(Serialize, Debug)]
+#[allow(dead_code)]
 pub enum Engine {
     QueryEngine,
     LibQueryEngineNapi,
