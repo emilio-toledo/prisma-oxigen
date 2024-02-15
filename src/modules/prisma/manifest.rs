@@ -18,7 +18,7 @@ impl Default for Manifest {
             default_output: "./gen".to_string(),
             version: env!("CARGO_PKG_VERSION").to_string(),
             deny_list: None,
-            requires_generators: Some(vec!["prisma-client-js".to_string()]),
+            requires_generators: Some(vec![]),
             required_engines: Some(vec![
                 Engine::QueryEngine,
                 Engine::LibQueryEngineNapi,
