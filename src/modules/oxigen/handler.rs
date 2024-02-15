@@ -1,3 +1,5 @@
+use std::io::stderr;
+
 use crate::modules::prisma::{Manifest, Request, Response};
 use serde_json::json;
 
@@ -35,7 +37,7 @@ impl Handler {
             callback((&message, 32));
         }
 
-        Response::send(response);
+        Response::send(response, &mut stderr());
     }
 
     fn on_generate(message: &Request, callback: GenerateCallback) {
