@@ -37,7 +37,6 @@ pub struct DenyList {
 }
 
 #[derive(Serialize, Debug)]
-#[serde(rename_all = "camelCase")]
 pub enum Engine {
     QueryEngine,
     LibQueryEngineNapi,
