@@ -1,4 +1,4 @@
-generator client {
+generator oxigen {
   provider = "./target/debug/prisma-oxigen"
 }
 
