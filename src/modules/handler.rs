@@ -1,19 +1,19 @@
 use super::prisma::{Manifest, Request, Response};
 use serde_json::json;
 
-pub type OnManifestCallback = Option<fn(OnManifestCallbackParams)>;
-pub type OnGenerateCallback = Option<fn(OnGenerateCallbackParams)>;
+pub type ManifestCallback = Option<fn(ManifestCallbackParams)>;
+pub type GenerateCallback = Option<fn(GenerateCallbackParams)>;
 
-pub type OnManifestCallbackParams<'a> = (&'a Request, i32);
-pub type OnGenerateCallbackParams<'a> = (&'a Request, i32);
+pub type ManifestCallbackParams<'a> = (&'a Request, i32);
+pub type GenerateCallbackParams<'a> = (&'a Request, i32);
 
 pub struct Handler {}
 impl Handler {
-    pub fn run(manifest_callback: OnManifestCallback, generate_callback: OnGenerateCallback) {
+    pub fn run(manifest_callback: ManifestCallback, generate_callback: GenerateCallback) {
         loop {
             let message = Request::listen();
 
-            println!("{:?}", message);
+            // println!("{:?}", message);
 
             match message.method.as_str() {
                 "getManifest" => Self::on_manifest(&message, manifest_callback),
@@ -23,7 +23,7 @@ impl Handler {
         }
     }
 
-    fn on_manifest(message: &Request, callback: OnManifestCallback) {
+    fn on_manifest(message: &Request, callback: ManifestCallback) {
         let manifest = serde_json::to_value(&Manifest::default())
             .expect("Failed to parse manifest object as json");
 
@@ -40,7 +40,7 @@ impl Handler {
         Response::send(response);
     }
 
-    fn on_generate(message: &Request, callback: OnGenerateCallback) {
+    fn on_generate(message: &Request, callback: GenerateCallback) {
         if let Some(callback) = callback {
             callback((&message, 32));
         }
