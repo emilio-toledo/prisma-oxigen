@@ -1,0 +1,27 @@
+generator client {
+  provider = "./target/debug/prisma-oxigen"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Session {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  User   User @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id      Int       @id @default(autoincrement())
+  email   String    @unique
+  name    String?
+  role    Role      @default(USER)
+  Session Session[]
+}
