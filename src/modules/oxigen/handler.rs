@@ -13,8 +13,6 @@ impl Handler {
         loop {
             let message = Request::listen();
 
-            // println!("{:?}", message);
-
             match message.method.as_str() {
                 "getManifest" => Self::on_manifest(&message, manifest_callback),
                 "generate" => break Self::on_generate(&message, generate_callback),
