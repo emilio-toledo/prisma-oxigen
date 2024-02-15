@@ -1,12 +1,24 @@
 use serde::Serialize;
 use serde_json::Value;
-use std::io::{stderr, Write};
+use std::io::Write;
 
 #[derive(Serialize, Debug)]
 pub struct Response {
     pub jsonrpc: String,
     pub result: Value,
     pub id: i32,
+}
+
+impl Response {
+    pub fn send<Writer: Write>(response: Response, writer: &mut Writer) -> &mut Writer {
+        let mut payload = serde_json::to_vec(&response).expect("Failed to serialize response");
+
+        payload.push(b'\n');
+
+        writer.write(&payload).expect("Failed to write to stderr");
+
+        writer
+    }
 }
 
 impl Default for Response {
@@ -19,15 +31,17 @@ impl Default for Response {
     }
 }
 
-impl Response {
-    pub fn send(response: Response) {
-        let mut payload =
-            serde_json::to_vec(&response).expect("Failed to transform response to vector");
+#[cfg(test)]
+mod tests {
+    use super::Response;
 
-        payload.push(b'\n');
+    #[test]
+    fn send() {
+        let response = Response::default();
 
-        stderr()
-            .write(&payload)
-            .expect("Failed to write to prisma engine");
+        let mut mock = serde_json::to_vec(&response).expect("Failed to serialize response");
+        mock.push(b'\n');
+
+        assert_eq!(mock, Response::send(response, &mut Vec::new()).clone());
     }
 }
