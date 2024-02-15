@@ -1,6 +1,6 @@
 mod modules;
 
-use modules::Generator;
+use modules::oxigen::Generator;
 
 fn main() {
     Generator::new(None, None);

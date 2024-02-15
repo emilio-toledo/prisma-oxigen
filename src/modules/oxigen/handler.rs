@@ -1,4 +1,4 @@
-use super::prisma::{Manifest, Request, Response};
+use crate::modules::prisma::{Manifest, Request, Response};
 use serde_json::json;
 
 pub type ManifestCallback = Option<fn(ManifestCallbackParams)>;
