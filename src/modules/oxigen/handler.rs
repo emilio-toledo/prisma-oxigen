@@ -37,7 +37,7 @@ impl Handler {
             callback((&message, 32));
         }
 
-        Response::send(response, &mut stderr());
+        Response::send(&response, &mut stderr());
     }
 
     fn on_generate(message: &Request, callback: GenerateCallback) {

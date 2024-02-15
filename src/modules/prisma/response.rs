@@ -10,14 +10,12 @@ pub struct Response {
 }
 
 impl Response {
-    pub fn send<Writer: Write>(response: Response, writer: &mut Writer) -> &mut Writer {
+    pub fn send<'a, Writer: Write>(response: &'a Response, writer: &'a mut Writer) {
         let mut payload = serde_json::to_vec(&response).expect("Failed to serialize response");
 
         payload.push(b'\n');
 
         writer.write(&payload).expect("Failed to write to stderr");
-
-        writer
     }
 }
 
@@ -33,15 +31,23 @@ impl Default for Response {
 
 #[cfg(test)]
 mod tests {
+
+    use std::io::Cursor;
+
     use super::Response;
 
     #[test]
     fn send() {
         let response = Response::default();
 
-        let mut mock = serde_json::to_vec(&response).expect("Failed to serialize response");
-        mock.push(b'\n');
+        let mut expected = serde_json::to_vec(&response).expect("Failed to serialize response");
+        expected.push(b'\n');
 
-        assert_eq!(mock, Response::send(response, &mut Vec::new()).clone());
+        let mut writer: Cursor<Vec<u8>> = Cursor::new(Vec::new());
+        Response::send(&response, &mut writer);
+
+        let actual = writer.into_inner();
+
+        assert_eq!(expected, actual);
     }
 }
