@@ -1,8 +1,8 @@
 use super::{BinaryTarget, StringOrEnv};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct GeneratorConfig {
     pub name: String,

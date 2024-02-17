@@ -1,7 +1,7 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct BinaryPaths {
     pub schema_engine: Option<HashMap<String, String>>,
     pub query_engine: Option<HashMap<String, String>>,

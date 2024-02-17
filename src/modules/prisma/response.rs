@@ -1,12 +1,12 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::io::Write;
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Response {
     pub jsonrpc: String,
     pub result: Value,
-    pub id: i32,
+    pub id: f64,
 }
 
 impl Response {
@@ -24,7 +24,7 @@ impl Default for Response {
         Self {
             jsonrpc: "2.0".to_string(),
             result: Value::Null,
-            id: 1,
+            id: 1.0,
         }
     }
 }

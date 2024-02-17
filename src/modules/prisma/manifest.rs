@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Manifest {
     pub pretty_name: String,
@@ -26,13 +26,13 @@ impl Default for Manifest {
     }
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct DenyList {
     models: Option<Vec<String>>,
     fields: Option<Vec<String>>,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 #[allow(dead_code)]
 pub enum Engine {
     QueryEngine,

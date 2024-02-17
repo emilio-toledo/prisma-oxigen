@@ -1,14 +1,14 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::io::stdin;
 
 use super::{GeneratorConfig, GeneratorOptions};
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Request {
     pub jsonrpc: String,
     pub method: String,
     pub params: Params,
-    pub id: i32,
+    pub id: f64,
 }
 
 impl Request {
@@ -23,7 +23,7 @@ impl Request {
     }
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 #[serde(untagged)]
 pub enum Params {
     GeneratorConfig(GeneratorConfig),
