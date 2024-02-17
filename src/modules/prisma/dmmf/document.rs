@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
-use super::{DataModel, Mappings, Schema};
+use super::{data_model::Model, mappings::Mappings, schema::Schema};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Document {
-    datamodel: DataModel,
+    datamodel: Model,
     schema: Schema,
     mappings: Mappings,
 }

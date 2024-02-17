@@ -1,7 +1,8 @@
-use super::TypeRef;
 use serde::{Deserialize, Serialize};
 
-pub type InputTypeRef = TypeRef<InputTypeRefAllowedLocations>;
+use super::type_ref;
+
+pub type Ref = type_ref::Ref<InputTypeRefAllowedLocations>;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]

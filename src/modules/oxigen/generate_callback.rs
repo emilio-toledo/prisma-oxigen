@@ -1,8 +1,8 @@
-use crate::modules::prisma::{GeneratorOptions, Request};
+use crate::modules::prisma::{generator_options::Options, request::Request};
 
-pub type GenerateCallback = Option<fn(GenerateCallbackParams)>;
+pub type Callback = Option<fn(Params)>;
 
-pub struct GenerateCallbackParams<'a> {
+pub struct Params<'a> {
     pub message: &'a Request,
-    pub options: &'a GeneratorOptions,
+    pub options: &'a Options,
 }

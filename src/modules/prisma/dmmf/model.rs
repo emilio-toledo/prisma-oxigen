@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{Field, PrimaryKey, UniqueIndex};
+use super::{field::Field, primary_key::Key, unique_index::Index};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -9,8 +9,8 @@ pub struct Model {
     db_name: Option<String>,
     fields: Vec<Field>,
     unique_fields: Vec<Vec<String>>,
-    unique_indexes: Vec<UniqueIndex>,
+    unique_indexes: Vec<Index>,
     documentation: Option<String>,
-    primary_key: Option<PrimaryKey>,
+    primary_key: Option<Key>,
     is_generated: Option<bool>,
 }

@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
-use super::{FieldDefaultEnum, FieldKind};
+use super::{field_default::Enum, field_kind::Kind};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Field {
-    kind: FieldKind,
+    kind: Kind,
     name: String,
     is_required: bool,
     is_list: bool,
@@ -17,7 +17,7 @@ pub struct Field {
     r#type: String,
     db_name: Option<String>,
     has_default_value: bool,
-    default: Option<FieldDefaultEnum>,
+    default: Option<Enum>,
     relation_from_fields: Option<Vec<String>>,
     relation_to_fields: Option<Vec<String>>,
     relation_on_delete: Option<String>,

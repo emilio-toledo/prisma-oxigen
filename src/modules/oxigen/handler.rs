@@ -1,12 +1,15 @@
-use crate::modules::prisma::{Manifest, Request, Response};
 use serde_json::json;
 use std::io::stderr;
 
-use super::{GenerateCallback, GenerateCallbackParams, ManifestCallback, ManifestCallbackParams};
+use super::{generate_callback, manifest_callback};
+use crate::modules::prisma::{manifest::Manifest, request::Request, response::Response};
 
 pub struct Handler {}
 impl Handler {
-    pub fn run(manifest_callback: ManifestCallback, generate_callback: GenerateCallback) {
+    pub fn run(
+        manifest_callback: manifest_callback::Callback,
+        generate_callback: generate_callback::Callback,
+    ) {
         loop {
             let message = Request::listen();
 
@@ -18,7 +21,7 @@ impl Handler {
         }
     }
 
-    fn on_manifest(message: &Request, callback: ManifestCallback) {
+    fn on_manifest(message: &Request, callback: manifest_callback::Callback) {
         let manifest = serde_json::to_value(&Manifest::default())
             .expect("Failed to parse manifest object as json");
 
@@ -29,7 +32,7 @@ impl Handler {
         };
 
         if let Some(callback) = callback {
-            callback(ManifestCallbackParams {
+            callback(manifest_callback::Params {
                 message,
                 config: &message.params.as_generator_config(),
             });
@@ -38,9 +41,9 @@ impl Handler {
         Response::send(&response, &mut stderr());
     }
 
-    fn on_generate(message: &Request, callback: GenerateCallback) {
+    fn on_generate(message: &Request, callback: generate_callback::Callback) {
         if let Some(callback) = callback {
-            callback(GenerateCallbackParams {
+            callback(generate_callback::Params {
                 message,
                 options: &message.params.as_generator_options(),
             });

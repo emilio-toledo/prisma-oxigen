@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
-use super::{DataModelEnum, Model};
+use super::{data_model_enum::Enum, model};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct DataModel {
-    enums: Vec<DataModelEnum>,
-    models: Vec<Model>,
-    types: Vec<Model>,
+pub struct Model {
+    enums: Vec<Enum>,
+    models: Vec<model::Model>,
+    types: Vec<model::Model>,
 }

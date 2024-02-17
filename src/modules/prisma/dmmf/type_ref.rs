@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-use super::FieldNamespace;
+use super::field_namespace::Namespace;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct TypeRef<AllowedLocations> {
+pub struct Ref<AllowedLocations> {
     is_list: bool,
     r#type: String,
     location: AllowedLocations,
-    namespace: Option<FieldNamespace>,
+    namespace: Option<Namespace>,
 }

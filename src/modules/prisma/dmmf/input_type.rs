@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-use super::{InputTypeConstraints, InputTypeMeta, SchemaArg};
+use super::{input_type_constraints::Constraints, input_type_meta::Meta, schema_arg::Arg};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct InputType {
+pub struct Type {
     name: String,
-    constraints: InputTypeConstraints,
-    meta: Option<InputTypeMeta>,
-    fields: Vec<SchemaArg>,
+    constraints: Constraints,
+    meta: Option<Meta>,
+    fields: Vec<Arg>,
 }

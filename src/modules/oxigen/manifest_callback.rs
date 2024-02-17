@@ -1,8 +1,8 @@
-use crate::modules::prisma::{GeneratorConfig, Request};
+use crate::modules::prisma::{generator_config::Config, request::Request};
 
-pub type ManifestCallback = Option<fn(ManifestCallbackParams)>;
+pub type Callback = Option<fn(Params)>;
 
-pub struct ManifestCallbackParams<'a> {
+pub struct Params<'a> {
     pub message: &'a Request,
-    pub config: &'a GeneratorConfig,
+    pub config: &'a Config,
 }

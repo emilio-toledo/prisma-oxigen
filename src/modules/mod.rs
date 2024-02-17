@@ -1,2 +1,2 @@
 pub mod oxigen;
-mod prisma;
+pub mod prisma;
