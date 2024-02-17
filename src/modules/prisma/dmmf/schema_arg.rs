@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{deprecation::Deprecation, input_type_ref::Ref};
+use super::{deprecation::Deprecation, input::TypeRef};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -9,6 +9,6 @@ pub struct Arg {
     comment: Option<String>,
     is_nullable: bool,
     is_required: bool,
-    input_types: Vec<Ref>,
+    input_types: Vec<TypeRef>,
     deprecation: Option<Deprecation>,
 }
