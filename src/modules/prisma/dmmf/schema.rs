@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use super::input::ObjectTypes;
+use super::{
+    deprecation::Deprecation,
+    input::{ObjectTypes, TypeRef},
+};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -12,11 +15,11 @@ pub struct Schema {
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-#[serde(untagged)]
-pub enum FieldLocations {
-    Scalar,
-    InputObjectTypes,
-    OutputObjectTypes,
-    EnumTypes,
-    FieldRefTypes,
+pub struct Arg {
+    name: String,
+    comment: Option<String>,
+    is_nullable: bool,
+    is_required: bool,
+    input_types: Vec<TypeRef>,
+    deprecation: Option<Deprecation>,
 }

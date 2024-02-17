@@ -6,6 +6,5 @@ pub mod input;
 pub mod mappings;
 pub mod primary_key;
 pub mod schema;
-pub mod schema_arg;
 pub mod type_ref;
 pub mod unique_index;
