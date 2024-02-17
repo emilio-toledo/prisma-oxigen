@@ -1,19 +1,8 @@
-use crate::modules::prisma::{GeneratorConfig, GeneratorOptions, Manifest, Request, Response};
+use crate::modules::prisma::{Manifest, Request, Response};
 use serde_json::json;
 use std::io::stderr;
 
-pub type ManifestCallback = Option<fn(ManifestCallbackParams)>;
-pub type GenerateCallback = Option<fn(GenerateCallbackParams)>;
-
-pub struct ManifestCallbackParams<'a> {
-    pub message: &'a Request,
-    pub config: &'a GeneratorConfig,
-}
-
-pub struct GenerateCallbackParams<'a> {
-    pub message: &'a Request,
-    pub options: &'a GeneratorOptions,
-}
+use super::{GenerateCallback, GenerateCallbackParams, ManifestCallback, ManifestCallbackParams};
 
 pub struct Handler {}
 impl Handler {
