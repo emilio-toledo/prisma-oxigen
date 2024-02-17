@@ -29,3 +29,19 @@ pub enum Params {
     GeneratorConfig(GeneratorConfig),
     GeneratorOptions(GeneratorOptions),
 }
+
+impl Params {
+    pub fn as_generator_config(&self) -> &GeneratorConfig {
+        match self {
+            Params::GeneratorConfig(config) => config,
+            _ => panic!("Failed to parse generator config"),
+        }
+    }
+
+    pub fn as_generator_options(&self) -> &GeneratorOptions {
+        match self {
+            Params::GeneratorOptions(options) => options,
+            _ => panic!("Failed to parse generator options"),
+        }
+    }
+}

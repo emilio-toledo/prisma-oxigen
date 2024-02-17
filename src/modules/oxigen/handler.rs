@@ -1,12 +1,19 @@
-use crate::modules::prisma::{Manifest, Request, Response};
+use crate::modules::prisma::{GeneratorConfig, GeneratorOptions, Manifest, Request, Response};
 use serde_json::json;
 use std::io::stderr;
 
 pub type ManifestCallback = Option<fn(ManifestCallbackParams)>;
 pub type GenerateCallback = Option<fn(GenerateCallbackParams)>;
 
-pub type ManifestCallbackParams<'a> = (&'a Request, i32);
-pub type GenerateCallbackParams<'a> = (&'a Request, i32);
+pub struct ManifestCallbackParams<'a> {
+    pub message: &'a Request,
+    pub config: &'a GeneratorConfig,
+}
+
+pub struct GenerateCallbackParams<'a> {
+    pub message: &'a Request,
+    pub options: &'a GeneratorOptions,
+}
 
 pub struct Handler {}
 impl Handler {
@@ -33,7 +40,10 @@ impl Handler {
         };
 
         if let Some(callback) = callback {
-            callback((&message, 32));
+            callback(ManifestCallbackParams {
+                message,
+                config: &message.params.as_generator_config(),
+            });
         }
 
         Response::send(&response, &mut stderr());
@@ -41,7 +51,10 @@ impl Handler {
 
     fn on_generate(message: &Request, callback: GenerateCallback) {
         if let Some(callback) = callback {
-            callback((&message, 32));
+            callback(GenerateCallbackParams {
+                message,
+                options: &message.params.as_generator_options(),
+            });
         }
     }
 }
