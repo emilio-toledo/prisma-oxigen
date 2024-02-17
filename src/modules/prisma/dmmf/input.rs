@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{schema_arg::Arg, type_ref};
+use super::{schema::Arg, type_ref};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -33,6 +33,7 @@ pub type TypeRef = type_ref::Ref<TypeRefAllowedLocations>;
 pub enum TypeRefAllowedLocations {
     Scalar,
     InputObjectTypes,
+    OutputObjectTypes,
     EnumTypes,
     FieldRefTypes,
 }
