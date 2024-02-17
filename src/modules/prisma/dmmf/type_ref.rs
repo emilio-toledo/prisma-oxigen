@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::field_namespace::Namespace;
+use super::field::Namespace;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]

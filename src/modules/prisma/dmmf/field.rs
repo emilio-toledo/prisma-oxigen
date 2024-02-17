@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
-
-use super::{field_default::Enum, field_kind::Kind};
+use serde_json::Value;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -17,10 +16,51 @@ pub struct Field {
     r#type: String,
     db_name: Option<String>,
     has_default_value: bool,
-    default: Option<Enum>,
+    default: Option<Default>,
     relation_from_fields: Option<Vec<String>>,
     relation_to_fields: Option<Vec<String>>,
     relation_on_delete: Option<String>,
     relation_name: Option<String>,
     documentation: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub enum Kind {
+    Scalar,
+    Object,
+    Enum,
+    Unsupported,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+#[serde(untagged)]
+pub enum Default {
+    FieldDefault(FieldDefault),
+    FieldDefaultScalar(FieldDefaultScalar),
+    FieldDefaultScalarList(Vec<FieldDefaultScalar>),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct FieldDefault {
+    name: String,
+    args: Vec<Value>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+#[serde(untagged)]
+pub enum FieldDefaultScalar {
+    String(String),
+    Boolean(bool),
+    Number(f64),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub enum Namespace {
+    Model,
+    Prisma,
 }
