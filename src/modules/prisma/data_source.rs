@@ -1,14 +1,14 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-use super::{Connector, StringOrEnv};
+use super::{Provider, StringOrEnv};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct DataSource {
     pub name: String,
-    pub provider: Connector,
-    pub active_provider: Connector,
+    pub provider: Provider,
+    pub active_provider: Provider,
     pub url: StringOrEnv,
     pub direct_url: Option<StringOrEnv>,
     pub schemas: Vec<Value>,
