@@ -1,5 +1,4 @@
 pub mod data_model;
-pub mod data_model_enum;
 pub mod deprecation;
 pub mod document;
 pub mod field;
@@ -12,7 +11,6 @@ pub mod input_type_constraints;
 pub mod input_type_meta;
 pub mod input_type_ref;
 pub mod mappings;
-pub mod model;
 pub mod primary_key;
 pub mod schema;
 pub mod schema_arg;
