@@ -1,7 +1,12 @@
 [package]
 name = "prisma-oxigen"
-version = "0.1.0"
+version = "1.0.0"
+description = "Prisma Oxigen is a Rust crate designed to facilitate the creation of Prisma generators. It provides a set of utilities and abstractions to simplify the process of building custom generators for the Prisma ORM."
+homepage = "https://github.com/emilio-toledo/prisma-oxigen"
+repository = "https://github.com/emilio-toledo/prisma-oxigen"
+readme = "README.md"
 edition = "2021"
+license = "Apache-2.0"
 
 [dependencies]
 serde = { version = "1.0.196", features = ["derive"] }
