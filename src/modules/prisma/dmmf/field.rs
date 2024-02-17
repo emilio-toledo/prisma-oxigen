@@ -4,24 +4,24 @@ use serde_json::Value;
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Field {
-    kind: Kind,
-    name: String,
-    is_required: bool,
-    is_list: bool,
-    is_unique: bool,
-    is_id: bool,
-    is_read_only: bool,
-    is_generated: Option<bool>, // * does not exist on 'type' but does on 'model'
-    is_updated_at: Option<bool>, // * does not exist on 'type' but does on 'model'
-    r#type: String,
-    db_name: Option<String>,
-    has_default_value: bool,
-    default: Option<Default>,
-    relation_from_fields: Option<Vec<String>>,
-    relation_to_fields: Option<Vec<String>>,
-    relation_on_delete: Option<String>,
-    relation_name: Option<String>,
-    documentation: Option<String>,
+    pub kind: Kind,
+    pub name: String,
+    pub is_required: bool,
+    pub is_list: bool,
+    pub is_unique: bool,
+    pub is_id: bool,
+    pub is_read_only: bool,
+    pub is_generated: Option<bool>, // * does not exist on 'type' but does on 'model'
+    pub is_updated_at: Option<bool>, // * does not exist on 'type' but does on 'model'
+    pub r#type: String,
+    pub db_name: Option<String>,
+    pub has_default_value: bool,
+    pub default: Option<Default>,
+    pub relation_from_fields: Option<Vec<String>>,
+    pub relation_to_fields: Option<Vec<String>>,
+    pub relation_on_delete: Option<String>,
+    pub relation_name: Option<String>,
+    pub documentation: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -45,8 +45,8 @@ pub enum Default {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct FieldDefault {
-    name: String,
-    args: Vec<Value>,
+    pub name: String,
+    pub args: Vec<Value>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

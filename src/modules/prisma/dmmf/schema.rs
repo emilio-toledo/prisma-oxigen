@@ -8,18 +8,18 @@ use super::{
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Schema {
-    root_query_type: Option<String>,
-    root_mutation_type: Option<String>,
-    input_object_types: ObjectTypes,
+    pub root_query_type: Option<String>,
+    pub root_mutation_type: Option<String>,
+    pub input_object_types: ObjectTypes,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Arg {
-    name: String,
-    comment: Option<String>,
-    is_nullable: bool,
-    is_required: bool,
-    input_types: Vec<TypeRef>,
-    deprecation: Option<Deprecation>,
+    pub name: String,
+    pub comment: Option<String>,
+    pub is_nullable: bool,
+    pub is_required: bool,
+    pub input_types: Vec<TypeRef>,
+    pub deprecation: Option<Deprecation>,
 }

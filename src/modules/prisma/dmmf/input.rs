@@ -5,25 +5,25 @@ use super::{schema::Arg, type_ref};
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Type {
-    name: String,
-    constraints: TypeConstraints,
-    meta: Option<TypeMeta>,
-    fields: Vec<Arg>,
+    pub name: String,
+    pub constraints: TypeConstraints,
+    pub meta: Option<TypeMeta>,
+    pub fields: Vec<Arg>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ObjectTypes {
-    model: Option<Vec<Type>>, // * for now there are no model InputTypes
-    prisma: Vec<Type>,
+    pub model: Option<Vec<Type>>, // * for now there are no model InputTypes
+    pub prisma: Vec<Type>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct TypeConstraints {
-    max_num_fields: Option<f64>,
-    min_num_fields: Option<f64>,
-    fields: Option<Vec<String>>,
+    pub max_num_fields: Option<f64>,
+    pub min_num_fields: Option<f64>,
+    pub fields: Option<Vec<String>>,
 }
 
 pub type TypeRef = type_ref::Ref<TypeRefAllowedLocations>;
@@ -41,5 +41,5 @@ pub enum TypeRefAllowedLocations {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct TypeMeta {
-    source: Option<String>,
+    pub source: Option<String>,
 }

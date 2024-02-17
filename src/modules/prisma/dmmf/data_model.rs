@@ -5,36 +5,36 @@ use super::{field::Field, primary_key::Key, unique_index::Index};
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct DataModel {
-    enums: Vec<Enum>,
-    models: Vec<Model>,
-    types: Vec<Model>,
+    pub enums: Vec<Enum>,
+    pub models: Vec<Model>,
+    pub types: Vec<Model>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Model {
-    name: String,
-    db_name: Option<String>,
-    fields: Vec<Field>,
-    unique_fields: Vec<Vec<String>>,
-    unique_indexes: Vec<Index>,
-    documentation: Option<String>,
-    primary_key: Option<Key>,
-    is_generated: Option<bool>,
+    pub name: String,
+    pub db_name: Option<String>,
+    pub fields: Vec<Field>,
+    pub unique_fields: Vec<Vec<String>>,
+    pub unique_indexes: Vec<Index>,
+    pub documentation: Option<String>,
+    pub primary_key: Option<Key>,
+    pub is_generated: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Enum {
-    name: String,
-    values: Vec<EnumValue>,
-    db_name: Option<String>,
-    documentation: Option<String>,
+    pub name: String,
+    pub values: Vec<EnumValue>,
+    pub db_name: Option<String>,
+    pub documentation: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct EnumValue {
-    name: String,
-    db_name: Option<String>,
+    pub name: String,
+    pub db_name: Option<String>,
 }
